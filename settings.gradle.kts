@@ -13,6 +13,6 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "WeatherMateMultiProject"
-include(":app")
+
 include(":candidate-starter-app")
 project(":candidate-starter-app").projectDir = file("candidate/starter/app")
