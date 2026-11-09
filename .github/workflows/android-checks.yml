@@ -1,0 +1,33 @@
+name: Android checks
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+      - name: Build debug
+        run: ./gradlew assembleDebug
+      - name: Unit tests
+        run: ./gradlew testDebugUnitTest
+      # Acrescentar connectedAndroidTest e captura de screenshot quando o projeto
+      # tiver um emulador/AVD fixo e uma activity/launcher já validados.
+      - name: Upload build outputs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-build-outputs
+          path: |
+            app/build/outputs/apk/
+            app/build/reports/tests/
