@@ -21,6 +21,7 @@
         android:extractNativeLibs="false"
         android:label="Weather Mate (Starter)"
         android:supportsRtl="true"
+        android:testOnly="true"
         android:theme="@android:style/Theme.Material.Light.NoActionBar" >
         <activity
             android:name="com.androidquest.weathermate.MainActivity"
