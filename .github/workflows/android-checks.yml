@@ -21,8 +21,6 @@ jobs:
         run: ./gradlew assembleDebug
       - name: Unit tests
         run: ./gradlew testDebugUnitTest
-      # Acrescentar connectedAndroidTest e captura de screenshot quando o projeto
-      # tiver um emulador/AVD fixo e uma activity/launcher já validados.
       - name: Upload build outputs
         if: always()
         uses: actions/upload-artifact@v4
@@ -30,4 +28,6 @@ jobs:
           name: android-build-outputs
           path: |
             app/build/outputs/apk/
+            candidate/starter/app/build/outputs/apk/
             app/build/reports/tests/
+          if-no-files-found: ignore
