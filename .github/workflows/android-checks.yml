@@ -28,6 +28,5 @@ jobs:
           name: android-build-outputs
           path: |
             app/build/outputs/apk/
-            candidate/starter/app/build/outputs/apk/
             app/build/reports/tests/
           if-no-files-found: ignore

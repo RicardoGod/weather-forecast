@@ -12,7 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "WeatherMateMultiProject"
-
-include(":candidate-starter-app")
-project(":candidate-starter-app").projectDir = file("candidate/starter/app")
+rootProject.name = "WeatherMate"
+include(":app")

@@ -2,33 +2,29 @@
 
 Welcome to **Weather Mate**, an educational Android development programme designed to teach junior developers progressively using Jetpack Compose, Material 3, and MVVM architecture.
 
-## Multi-Project Architecture
+## Repository Structure
 
-This repository is configured as a **Gradle Multi-Project** workspace. Opening the root folder in Android Studio loads the **candidate starter kit (`:candidate-starter-app`)** side by side in the same window.
+This repository contains the **candidate starter project**, designed for candidates to work on their missions step-by-step:
 
 ```text
 weather-mate/
-├── candidate/
-│   ├── README.md
-│   ├── missions/         # Missions 01 to 07
-│   └── starter/          # Candidate starter project module (:candidate-starter-app)
-├── mentor/               # Private mentor guides, rubrics & technical notes
+├── app/                  # Candidate starter app module (with TODOs)
+├── candidate/            # Mission guides & instructions (Missions 01 to 07)
+├── mentor/               # Private mentor guides, rubrics & reference solutions
 ├── evaluator/            # SSIM-based visual evaluator scripts and config
 ├── .github/workflows/    # CI pipeline for build and test checks
-├── VALIDATION.md         # Build and test validation report
 └── README.md
 ```
 
-## Getting Started in Android Studio
+## Getting Started
 
-1. Open the **root folder** (`weather-mate-android-quest-v1.0`) in Android Studio.
-2. Android Studio will automatically recognize both modules (`:candidate-starter-app`).
-3. Sync project with Gradle files.
-4. Select either module from the run configuration dropdown to execute on an emulator or device.
+1. Open the repository root folder in **Android Studio**.
+2. Sync project with Gradle files.
+3. Run the app on an emulator or physical device.
 
 ## Building and Testing via Command Line
 
-- Build all modules (Debug):
+- Build debug APK:
   ```bash
   ./gradlew assembleDebug
   ```
