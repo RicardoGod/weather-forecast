@@ -18,8 +18,8 @@ jobs:
           java-version: '17'
       - uses: android-actions/setup-android@v3
         with:
-          api-level: '35'
-          build-tools: '35.0.0'
+          packages: 'platforms;android-35 build-tools;35.0.0'
+          accept-android-sdk-licenses: true
       - name: Build debug
         run: ./gradlew assembleDebug
       - name: Unit tests
