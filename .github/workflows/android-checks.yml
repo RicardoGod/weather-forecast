@@ -20,6 +20,8 @@ jobs:
         with:
           packages: 'platforms;android-35 build-tools;35.0.0'
           accept-android-sdk-licenses: true
+      - name: Make gradlew executable
+        run: chmod +x gradlew
       - name: Build debug
         run: ./gradlew assembleDebug
       - name: Unit tests
