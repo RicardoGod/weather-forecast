@@ -1,4 +1,4 @@
-name: Android checks
+name: Android checks & Visual Evaluation
 
 on:
   pull_request:
@@ -12,26 +12,79 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '17'
+
       - uses: android-actions/setup-android@v3
         with:
           packages: 'platforms;android-35 build-tools;35.0.0'
           accept-android-sdk-licenses: true
+
       - name: Make gradlew executable
         run: chmod +x gradlew
+
       - name: Build debug
         run: ./gradlew assembleDebug
+
       - name: Unit tests
         run: ./gradlew testDebugUnitTest
-      - name: Upload build outputs
+
+  visual-evaluator:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r evaluator/requirements.txt
+
+      - name: Make gradlew executable
+        run: chmod +x gradlew
+
+      - name: Run Emulator, Launch App & Capture Screenshot
+        uses: ReactiveCircus/android-emulator-runner@v2
+        with:
+          api-level: 30
+          target: default
+          arch: x86_64
+          disable-animations: true
+          script: |
+            ./gradlew installDebug
+            adb shell am start -n com.androidquest.weathermate/.MainActivity
+            sleep 5
+            mkdir -p build/outputs
+            adb exec-out screencap -p > build/outputs/candidate-screenshot.png
+
+      - name: Evaluate Candidate Visual Screenshot
+        run: |
+          python evaluator/compare.py \
+            --reference reference/wheather-home.png \
+            --candidate build/outputs/candidate-screenshot.png \
+            --config evaluator/config.json \
+            --strict \
+            --json-out build/outputs/evaluator-report.json \
+            --md-out build/outputs/evaluator-report.md
+
+      - name: Upload Visual Evaluation Artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: android-build-outputs
+          name: visual-evaluation-report
           path: |
-            candidate/starter/app/build/outputs/apk/
-            candidate/starter/app/build/reports/tests/
+            build/outputs/candidate-screenshot.png
+            build/outputs/evaluator-report.json
+            build/outputs/evaluator-report.md
           if-no-files-found: ignore
