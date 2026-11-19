@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.androidquest.weathermate.candidate-starter-app-mergeDebugResources-46:/values-hi/values-hi.xml",
+            "outputFile": "com.androidquest.weathermate.candidate-starter-app-mergeDebugResources-47:/values-hi/values-hi.xml",
             "map": [
                 {
                     "source": "C:\\Users\\robso\\.gradle\\caches\\9.6.0\\transforms\\c3c9f5de191a2f68201a6a5b5e7d52a7\\transformed\\ui-release\\res\\values-hi\\values-hi.xml",

@@ -21,7 +21,7 @@ import com.androidquest.weathermate.model.DailyForecast
 
 
 @Composable
-fun WeatherScreen1(
+fun WeatherScreen(
     current: CurrentWeather = CurrentWeather(
         city = "Lisboa",
         temperature = 22,
@@ -79,6 +79,6 @@ fun WeatherScreen1(
 @Composable
 fun WeatherScreenPreview() {
     MaterialTheme {
-        WeatherScreen1()
+        WeatherScreen()
     }
 }

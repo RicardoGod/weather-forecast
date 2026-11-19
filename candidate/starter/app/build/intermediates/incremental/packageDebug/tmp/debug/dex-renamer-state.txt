@@ -1,9 +1,9 @@
-#Thu Nov 12 11:20:26 GMT 2026
+#Sat Nov 14 19:28:21 GMT 2026
 base.0=C\:\\Users\\robso\\Documents\\Mentoria_Ricardo_11_2026\\weatherforcast\\candidate\\starter\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 base.1=C\:\\Users\\robso\\Documents\\Mentoria_Ricardo_11_2026\\weatherforcast\\candidate\\starter\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
 base.2=C\:\\Users\\robso\\Documents\\Mentoria_Ricardo_11_2026\\weatherforcast\\candidate\\starter\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\10\\classes.dex
 base.3=C\:\\Users\\robso\\Documents\\Mentoria_Ricardo_11_2026\\weatherforcast\\candidate\\starter\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\11\\classes.dex
-base.4=C\:\\Users\\robso\\Documents\\Mentoria_Ricardo_11_2026\\weatherforcast\\candidate\\starter\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\14\\classes.dex
+base.4=C\:\\Users\\robso\\Documents\\Mentoria_Ricardo_11_2026\\weatherforcast\\candidate\\starter\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\12\\classes.dex
 base.5=C\:\\Users\\robso\\Documents\\Mentoria_Ricardo_11_2026\\weatherforcast\\candidate\\starter\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\5\\classes.dex
 base.6=C\:\\Users\\robso\\Documents\\Mentoria_Ricardo_11_2026\\weatherforcast\\candidate\\starter\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\6\\classes.dex
 base.7=C\:\\Users\\robso\\Documents\\Mentoria_Ricardo_11_2026\\weatherforcast\\candidate\\starter\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\8\\classes.dex
@@ -12,7 +12,7 @@ path.0=classes.dex
 path.1=0/classes.dex
 path.2=10/classes.dex
 path.3=11/classes.dex
-path.4=14/classes.dex
+path.4=12/classes.dex
 path.5=5/classes.dex
 path.6=6/classes.dex
 path.7=8/classes.dex
