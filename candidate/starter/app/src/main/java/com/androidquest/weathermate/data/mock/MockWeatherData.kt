@@ -1,13 +1,19 @@
 package com.androidquest.weathermate.data.mock
 
+import com.androidquest.weathermate.data.viewModel.WeatherRepository
+import com.androidquest.weathermate.model.CurrentWeather
 import com.androidquest.weathermate.model.DailyForecast
 import com.androidquest.weathermate.model.WeatherUiModel
 
-object MockWeatherData {
+/**
+ * Dados locais fictícios para a Missão 01 (sem API).
+ * Os composables não conhecem estes dados: recebem-nos pelo ViewModel.
+ */
+object MockWeatherData : WeatherRepository {
 
     val lisbon = WeatherUiModel(
         city = "Lisboa",
-        temperature = 22,
+        temperature = 29,
         condition = "Parcialmente nublado",
         high = 24,
         low = 17,
@@ -33,8 +39,25 @@ object MockWeatherData {
         )
     )
 
-    val cities = listOf(
-        lisbon,
-        porto
+    val cities = listOf(lisbon, porto)
+
+    val lisbonCurrent: CurrentWeather = lisbon.toCurrentWeather()
+
+    override suspend fun getCurrentWeather(city: String): CurrentWeather =
+        findCity(city).toCurrentWeather()
+
+    override suspend fun getForecast(city: String): List<DailyForecast> =
+        findCity(city).forecast
+
+    private fun findCity(city: String): WeatherUiModel =
+        cities.firstOrNull { it.city.equals(city, ignoreCase = true) }
+            ?: throw IllegalArgumentException("Cidade não encontrada: $city")
+
+    private fun WeatherUiModel.toCurrentWeather() = CurrentWeather(
+        city = city,
+        temperature = temperature,
+        description = condition,
+        max = high,
+        min = low
     )
 }

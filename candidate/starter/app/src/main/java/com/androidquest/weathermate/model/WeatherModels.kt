@@ -15,3 +15,13 @@ data class WeatherUiModel(
     val low: Int,
     val forecast: List<DailyForecast>
 )
+
+data class CurrentWeather(
+    val city: String,
+    val temperature: Int,
+    val description: String,
+    val max: Int,
+    val min: Int
+)
+
+
