@@ -12,18 +12,28 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.androidquest.weathermate.domain.filterCities
 import com.androidquest.weathermate.screen.WeatherScreen
+
+
 
 /**
  * Liga o ViewModel ao ecrã e trata dos 3 estados: carregando, erro e sucesso.
+ *
+ * A query de pesquisa vive aqui (e não no composable da tela), para não se perder
+ * quando o estado passa por Loading e a tela é trocada pelo spinner.
  */
 @Composable
 fun WeatherRoute(viewModel: WeatherViewModel = viewModel()) {
     val state by viewModel.uiState.collectAsState()
+    var query by rememberSaveable { mutableStateOf("") }
 
     when (val s = state) {
         is WeatherUiState.Loading -> {
@@ -51,7 +61,17 @@ fun WeatherRoute(viewModel: WeatherViewModel = viewModel()) {
         }
 
         is WeatherUiState.Success -> {
-            WeatherScreen(current = s.current, forecast = s.forecast)
+            WeatherScreen(
+                current = s.current,
+                forecast = s.forecast,
+                query = query,
+                onQueryChange = { query = it },
+                results = filterCities(viewModel.availableCities, query),
+                onCitySelected = { city ->
+                    query = ""
+                    viewModel.loadWeather(city)
+                }
+            )
         }
     }
 }

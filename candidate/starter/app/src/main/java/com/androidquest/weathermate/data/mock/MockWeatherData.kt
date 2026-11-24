@@ -5,15 +5,16 @@ import com.androidquest.weathermate.model.CurrentWeather
 import com.androidquest.weathermate.model.DailyForecast
 import com.androidquest.weathermate.model.WeatherUiModel
 
+
 /**
- * Dados locais fictícios para a Missão 01 (sem API).
+ * Dados locais fictícios (sem API).
  * Os composables não conhecem estes dados: recebem-nos pelo ViewModel.
  */
 object MockWeatherData : WeatherRepository {
 
     val lisbon = WeatherUiModel(
         city = "Lisboa",
-        temperature = 29,
+        temperature = 22,
         condition = "Parcialmente nublado",
         high = 24,
         low = 17,
@@ -39,7 +40,35 @@ object MockWeatherData : WeatherRepository {
         )
     )
 
-    val cities = listOf(lisbon, porto)
+    val coimbra = WeatherUiModel(
+        city = "Coimbra",
+        temperature = 20,
+        condition = "Sol",
+        high = 23,
+        low = 13,
+        forecast = listOf(
+            DailyForecast("Ter", "Sol", 23, 13),
+            DailyForecast("Qua", "Sol", 24, 14),
+            DailyForecast("Qui", "Nuvens", 21, 12),
+            DailyForecast("Sex", "Chuva", 18, 11)
+        )
+    )
+
+    val faro = WeatherUiModel(
+        city = "Faro",
+        temperature = 24,
+        condition = "Sol",
+        high = 26,
+        low = 18,
+        forecast = listOf(
+            DailyForecast("Ter", "Sol", 26, 18),
+            DailyForecast("Qua", "Sol", 27, 19),
+            DailyForecast("Qui", "Sol", 25, 18),
+            DailyForecast("Sex", "Nuvens", 24, 17)
+        )
+    )
+
+    val cities = listOf(lisbon, porto, coimbra, faro)
 
     val lisbonCurrent: CurrentWeather = lisbon.toCurrentWeather()
 

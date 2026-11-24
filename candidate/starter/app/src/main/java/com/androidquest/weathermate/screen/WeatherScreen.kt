@@ -14,18 +14,25 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.androidquest.weathermate.components.CitySearch
 import com.androidquest.weathermate.components.CurrentWeatherCard
 import com.androidquest.weathermate.components.ForecastRow
 import com.androidquest.weathermate.data.mock.MockWeatherData
 import com.androidquest.weathermate.model.CurrentWeather
 import com.androidquest.weathermate.model.DailyForecast
 
+
+
 val CardColor = Color(0xFFE6E0E9)
 
 @Composable
 fun WeatherScreen(
     current: CurrentWeather,
-    forecast: List<DailyForecast>
+    forecast: List<DailyForecast>,
+    query: String,
+    onQueryChange: (String) -> Unit,
+    results: List<String>,
+    onCitySelected: (String) -> Unit
 ) {
     Surface(
         modifier = Modifier.fillMaxSize(),
@@ -41,6 +48,15 @@ fun WeatherScreen(
                     text = "Weather Mate",
                     style = MaterialTheme.typography.headlineLarge,
                     modifier = Modifier.padding(bottom = 4.dp)
+                )
+            }
+
+            item {
+                CitySearch(
+                    query = query,
+                    onQueryChange = onQueryChange,
+                    results = results,
+                    onCitySelected = onCitySelected
                 )
             }
 
@@ -73,6 +89,10 @@ fun WeatherScreen(
 fun WeatherScreenPreview() {
     WeatherScreen(
         current = MockWeatherData.lisbonCurrent,
-        forecast = MockWeatherData.lisbon.forecast
+        forecast = MockWeatherData.lisbon.forecast,
+        query = "",
+        onQueryChange = {},
+        results = MockWeatherData.cities.map { it.city },
+        onCitySelected = {}
     )
 }
