@@ -11,6 +11,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
+
+
 sealed interface WeatherUiState {
     data object Loading : WeatherUiState
     data class Success(
@@ -23,6 +25,9 @@ sealed interface WeatherUiState {
 class WeatherViewModel(
     private val repository: WeatherRepository = MockWeatherData
 ) : ViewModel() {
+
+    /** Cidades que o utilizador pode escolher na UI. */
+    val availableCities: List<String> = MockWeatherData.cities.map { it.city }
 
     private val _uiState = MutableStateFlow<WeatherUiState>(WeatherUiState.Loading)
     val uiState: StateFlow<WeatherUiState> = _uiState.asStateFlow()
