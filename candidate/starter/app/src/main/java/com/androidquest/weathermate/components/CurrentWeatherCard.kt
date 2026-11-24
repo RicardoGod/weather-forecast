@@ -15,9 +15,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.androidquest.weathermate.model.CurrentWeather
 import com.androidquest.weathermate.screen.CardColor
-
 
 @Composable
 fun CurrentWeatherCard(weather: CurrentWeather) {
@@ -33,12 +33,7 @@ fun CurrentWeatherCard(weather: CurrentWeather) {
             )
             Text(
                 text = "${weather.temperature}°",
-                style = MaterialTheme.typography.displayLarge.copy(
-                    fontSize = androidx.compose.ui.unit.TextUnit(
-                        72f,
-                        androidx.compose.ui.unit.TextUnitType.Sp
-                    )
-                ),
+                style = MaterialTheme.typography.displayLarge.copy(fontSize = 72.sp),
                 modifier = Modifier.padding(vertical = 8.dp)
             )
             Text(

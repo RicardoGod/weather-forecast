@@ -1,7 +1,8 @@
-package com.example.weathermate
+package com.androidquest.weathermate.data.viewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.androidquest.weathermate.data.mock.MockWeatherData
 import com.androidquest.weathermate.model.CurrentWeather
 import com.androidquest.weathermate.model.DailyForecast
 import kotlinx.coroutines.async
@@ -20,7 +21,7 @@ sealed interface WeatherUiState {
 }
 
 class WeatherViewModel(
-    private val repository: WeatherRepository = MockWeatherRepository()
+    private val repository: WeatherRepository = MockWeatherData
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<WeatherUiState>(WeatherUiState.Loading)

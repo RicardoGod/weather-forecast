@@ -1,7 +1,7 @@
 package com.androidquest.weathermate.screen
 
-
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -16,25 +16,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.androidquest.weathermate.components.CurrentWeatherCard
 import com.androidquest.weathermate.components.ForecastRow
+import com.androidquest.weathermate.data.mock.MockWeatherData
 import com.androidquest.weathermate.model.CurrentWeather
 import com.androidquest.weathermate.model.DailyForecast
 
+val CardColor = Color(0xFFE6E0E9)
 
 @Composable
 fun WeatherScreen(
-    current: CurrentWeather = CurrentWeather(
-        city = "Lisboa",
-        temperature = 22,
-        description = "Parcialmente nublado",
-        max = 24,
-        min = 17
-    ),
-    forecast: List<DailyForecast> = listOf(
-        DailyForecast("Ter", "Sol", 24, 17),
-        DailyForecast("Qua", "Nuvens", 23, 16),
-        DailyForecast("Qui", "Chuva ligeira", 20, 15),
-        DailyForecast("Sex", "Sol", 25, 18)
-    )
+    current: CurrentWeather,
+    forecast: List<DailyForecast>
 ) {
     Surface(
         modifier = Modifier.fillMaxSize(),
@@ -42,17 +33,21 @@ fun WeatherScreen(
     ) {
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
-            contentPadding = androidx.compose.foundation.layout.PaddingValues(
-                horizontal = 16.dp,
-                vertical = 24.dp
-            ),
+            contentPadding = PaddingValues(horizontal = 16.dp, vertical = 24.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             item {
                 Text(
                     text = "Weather Mate",
                     style = MaterialTheme.typography.headlineLarge,
-                    modifier = Modifier.padding(start = 0.dp, bottom = 8.dp)
+                    modifier = Modifier.padding(bottom = 4.dp)
+                )
+            }
+
+            item {
+                Text(
+                    text = "Atualizado agora (dados de exemplo)",
+                    style = MaterialTheme.typography.bodySmall
                 )
             }
 
@@ -73,12 +68,11 @@ fun WeatherScreen(
     }
 }
 
- val CardColor = Color(0xFFE6E0E9)
-
 @Preview(showBackground = true, widthDp = 360, heightDp = 780)
 @Composable
 fun WeatherScreenPreview() {
-    MaterialTheme {
-        WeatherScreen()
-    }
+    WeatherScreen(
+        current = MockWeatherData.lisbonCurrent,
+        forecast = MockWeatherData.lisbon.forecast
+    )
 }
